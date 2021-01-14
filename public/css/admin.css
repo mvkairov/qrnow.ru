@@ -1,0 +1,35 @@
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.btn{
+	border-radius: 30px;
+}
+
+.btn-carrot{
+	background-color: #f36223;
+	border-color: #f36223;
+	color: #fff;
+	border-radius: 30px;
+}
+
+.btn-inline-carrot{
+	background-color: #fff;
+	border-color: #f36223;
+	color: #f36223;
+	border-radius: 30px;
+}
+
+.btn-inline-carrot:hover{
+	background-color: #f36223;
+	border-color: #f36223;
+	color: #fff;
+	border-radius: 30px;
+}
+
+.btn-carrot:hover{
+	background-color: #e14223;
+	border-color: #e14223;
+	border-radius: 30px;
+	color: #fff
+}

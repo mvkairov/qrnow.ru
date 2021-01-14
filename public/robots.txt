@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+
+Disallow: /storage
+Disallow: /menu
+Disallow: /start
+Disallow: /wait
+Disallow: /password
+
+Disallow: /*.json
+Disallow: /*.config

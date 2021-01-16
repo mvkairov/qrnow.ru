@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+<!-- важное замечание: в App/Http/Controllers/Auth/RegisterController.php -->
+<!-- нужно удалить выделенный код (после завершения ограниченного тестирования) -->
 @section('content')
 <div class="row">
     <div class="col">

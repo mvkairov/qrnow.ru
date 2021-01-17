@@ -8,7 +8,7 @@
 			<h1 class="intro_title">Спасибо! Ваш заказ скоро будет готов <br>
 									вызовите официанта для оплаты</h1>
 		</div>
-		<button class="btn col-12 btn-carrot" onclick="location.href = '{{ url('/menu/' . $menu['id']) }}';">Сделать новый заказ</button>								
+		<button class="btn col-12 btn-carrot" onclick="location.href = '{{ url('/menu/' . $menu['id'] . '?t=' . $place['id']) }}';">Сделать новый заказ</button>								
 	</div>
 </div>
 @endsection

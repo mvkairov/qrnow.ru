@@ -92,6 +92,7 @@ class MenuController extends Controller
         if (!Auth::check() or (Auth::id() != $menu->userId))
             abort(403);
         
+        $menu->name = $request->name;
         $menu->address = $request->address;
         if ($request->has('img')) {
             $img = $request->file('img');
@@ -109,8 +110,8 @@ class MenuController extends Controller
     }
 
     public function deleteMenu(Request $request) {
-        $menu = Menu::find($request->menuId);
-        if (!Auth::check() or $menu->id != Auth::id())
+        $menu = Menu::find(intval($request->menuId));
+        if (!Auth::check() or $menu->userId != Auth::id())
             abort(403);
         File::deleteDirectory(public_path('/storage/menus/' . strval($menu->id) . '/'));
         Menu::destroy($menu->id);

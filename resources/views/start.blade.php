@@ -62,11 +62,32 @@
 		</div>
 	</div>
 </div>
+
+<!-- карточка удаления меню -->
+<div class="modal fade" id="deleteMenuCard" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Вы хотите удалить "<span id="deleteMenuName"></span>"? Это действие необратимо</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteMenu">Да</button>
+				<button type="button" class="btn btn-success" data-dismiss="modal">Нет</button>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
 
 
 @section('script')
 <script>
+	let menus = [],		// список меню
+		cur_menu = {};	// удаляемое меню
+
 	// загрузка меню
 	$(document).ready(function () {
 		$.ajax({
@@ -77,18 +98,17 @@
 			processData: false,
 			data: '', 
 			success: function(data) {
-				var menus = JSON.parse(data);
-				for (const menu of menus)
-					add_menu({
-						'name': menu['name'],
-						'url': '{{ url("menu") }}/' + menu['id'],
-					});
+				menus = JSON.parse(data);
+				for (let menu of menus) {
+					menu['url'] = '{{ url("menu") }}/' + menu['id'];
+					add_menu(menu);
+				}
 			}
 		});
 	});
 	// добавление меню на страницу
 	function add_menu(menu_data) {
-		var menu = new_list_menu(menu_data);
+		let menu = new_list_menu(menu_data);
 		$('#menus').append(menu);
 	}
 
@@ -103,8 +123,9 @@
 		form_data.append('hookah', form.find('input[name="hookah"]').val());
 		form_data.append('_token', form.find('input[name="_token"]').val());
 
-		let img_data = form.find('input[name="img"]').prop('files')[0];
-		form_data.append('img', img_data);
+		let img_data = form.find('input[name="img"]').prop('files');
+		if (img_data[0])
+			form_data.append('img', img_data[0]);
 
 		$.ajax({
 			url: '{{ url("/addMenu") }}',
@@ -116,6 +137,32 @@
 			success: function(data) {
 				let menu = JSON.parse(data);
 				location.href = '{{ url("/menu") }}/' + menu['id'] + '/edit';
+			}
+		});
+	});
+	
+	// обновление удаляемого меню
+	$(document).on('click', '.deleteMenuBtn', function(e) {
+		let menuId = $(this).parents('.menu:first').attr('data-menu');
+		cur_menu = menus.filter(m => m.id == menuId)[0];
+		$('#deleteMenuName').html(cur_menu['name']);
+	});
+	// удаление меню
+	$(document).on('click', '#deleteMenu', function(e) {
+		let form_data = new FormData();
+		form_data.append('menuId', cur_menu['id']);
+		form_data.append('_token', $('meta[name="csrf-token"]').attr('content'));
+		$.ajax({
+			url: '{{ url("/deleteMenu") }}',
+			type: 'post',
+			cache: false,
+			contentType: false,
+			processData: false,
+			data: form_data,
+			success: function() {
+				let menu = $(`[data-menu="${cur_menu['id']}"]`);
+				menu.remove();
+				menus = menus.filter(m => m.id != cur_menu['id']);
 			}
 		});
 	});

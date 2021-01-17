@@ -61,7 +61,7 @@
 	<div style="margin: 0 auto; background-color: #eee; background: url('{{ URL::asset('storage/menus/' . $menu['id'] . '/' . $menu['img']) }}') center no-repeat;" class="intro col-xl-5 col-md-7 col-sm-11">
 		<div class="container">
 			<div class="intro_inner">
-				<h1 style="font-size: 50px;" class="intro_title">
+				<h1 style="font-size: 50px;" class="intro_title" id="menuName">
                     {{ $menu['name'] }}
                 </h1>
                 <button class="btn btn-carrot updateMenuBtn" data-toggle="modal" data-target="#updateMenuCard">Обновить меню</button>
@@ -173,7 +173,7 @@
                     </button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" style="border-radius: 30px; margin-top: 10px;" class="btn btn-danger col-12" data-dismiss="modal" id="deleteProduct">Да</button>
+                    <button type="button" style="border-radius: 30px; margin-top: 10px;" class="btn btn-danger" data-dismiss="modal" id="deleteProduct">Да</button>
                     <button type="button" style="border-radius: 30px; margin-top: 10px;"class="btn btn-success" data-dismiss="modal">Нет</button>
                 </div>
             </div>
@@ -219,7 +219,7 @@
                     </button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" style="border-radius: 30px; margin-top: 10px;" class="btn btn-danger col-12" data-dismiss="modal" id="deleteSection">Да</button>
+                    <button type="button" style="border-radius: 30px; margin-top: 10px;" class="btn btn-danger" data-dismiss="modal" id="deleteSection">Да</button>
                     <button type="button" style="border-radius: 30px; margin-top: 10px;" class="btn btn-success" data-dismiss="modal">Нет</button>
                 </div>
             </div>
@@ -240,6 +240,10 @@
                     <form action="/updateMenu" enctype="multipart/form-data" method="POST">
                         {{ csrf_field() }}
                         <input type="number" value="{{ $menu['id'] }}" name="id" hidden>
+                        <div class="form-group">
+                            <label style="font-size: 30px;">Измените название</label>
+                            <input style="border-radius: 20px; border-color: #e14223; box-shadow: none" class="form-control" name="name">
+                        </div>
                         <div class="form-group">
                             <label style="font-size: 30px;">Введите новый адрес</label>
                             <input style="border-radius: 20px; border-color: #e14223; box-shadow: none" class="form-control" name="address">
@@ -264,7 +268,8 @@
             sum = 0,			// сумма заказа
             cur_section = {},   // изменяемая/удаляемая секция
             cur_product = {},   // изменяемое/удаляемое блюдо
-            address = '{{ $menu["address"] }}';       // адрес
+            address = '{{ $menu["address"] }}',     // адрес
+            name = '{{ $menu["name"] }}';           // название  
 
 		// загрузка секций/блюд
         $(document).ready(function () {
@@ -491,6 +496,7 @@
         // обновление формы
         $(document).on('click', '.updateMenuBtn', function() {
             $('#updateMenuCard').find('input[name="address"]').val(address);
+            $('#updateMenuCard').find('input[name="name"]').val(name);
         });
         // обновление меню
         $(document).on('click', '.updateMenu', function(e) {            
@@ -500,9 +506,14 @@
             if (!form.find('input[name="address"]').val()) {
                 alert('Вы не ввели адрес!');
                 return false;
-            }
+            } else 
+                if (!form.find('input[name="name"]').val()) {
+                    alert('Вы не ввели название!');
+                    return false;
+                }
 
             form_data.append('id', form.find('input[name="id"]').val());
+            form_data.append('name', form.find('input[name="name"]').val());
             form_data.append('address', form.find('input[name="address"]').val());
             form_data.append('_token', form.find('input[name="_token"]').val());
 
@@ -522,6 +533,8 @@
                     let menu = JSON.parse(data);
                     $('.intro').css('background', 'url("{{ URL::asset("storage/menus/" . $menu["id"]) }}/' + menu['img'] + '") center no-repeat');
                     address = menu['address'];
+                    name = menu['name'];
+                    $('#menuName').html(name);
                 }
             });
         });

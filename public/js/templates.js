@@ -1,10 +1,10 @@
 const listMenu = `
-<li style="border:none;" class="list-group-item list-group-item">
+<li style="border: none;" class="list-group-item list-group-item menu" data-menu="{{ id }}">
     <h5>{{ name }}</h5>
     <a href="{{ url }}/orders"><button style="margin: 5px auto" class="col-12 btn btn-carrot">Заказы</button></a>
     <a href="{{ url }}/edit"><button style="margin: 5px auto" class="col-12 btn btn-carrot">Редактировать</button></a>
     <a href="{{ url }}/places"><button style="margin: 5px auto" class="col-12 btn btn-carrot">QR-коды</button></a>
-    <!-- <button style="margin: 5px auto" data-toggle="modal" data-target="#exampleModal"  class="col-12 btn btn-dark">Удалить меню</button> -->
+    <button style="margin: 5px auto" data-toggle="modal" data-target="#deleteMenuCard" class="col-12 btn btn-dark deleteMenuBtn">Удалить меню</button>
 </li>
 `;
 const listPlace = `

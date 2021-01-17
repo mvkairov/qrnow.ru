@@ -75,6 +75,8 @@ class OrderController extends Controller
         $order->guestNumber = $request->guestNumber;
         $order->paymentMethod = $request->paymentMethod;
         $order->takeAway = boolval($request->takeAway);
+        if ($request->has('comment'))
+            $order->comment = $request->comment;
         
         $sum = 0;
         $productsAmount = json_decode($order->products);

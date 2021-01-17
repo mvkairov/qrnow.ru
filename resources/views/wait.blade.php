@@ -67,6 +67,7 @@
 				let order = JSON.parse(data);
 				for (let product of order) {
 					product['img'] = "{{ URL::asset('storage/menus/' . $menu['id']) }}/" + product['sectionId'] + '/products/' + product['img'];
+					product['sum'] = product['count'] * product['price'];
 					products.push(product);
 					add_product(product);
 				}

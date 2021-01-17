@@ -142,8 +142,8 @@ const cartProductsList = `
 `;
 const waitProductsList = `
 <div class="product" style="max-width: 100%; overflow: hidden;" data-toggle="modal" data-target="#productModalCard" data-product="{{ id }}">
-    <h5 class="food-name card-title" style="float: left; width: 70%;">{{ name }} x{{ count }}</h5>
-    <h5 class="food-price card-title" style="float: left; width: 30%; text-align: right;">{{ price }}p</h5>
+    <h5 class="food-name card-title" style="float: left; width: 70%;">{{ name }} {{ price }}р x {{ count }} = </h5>
+    <h5 class="food-price card-title" style="float: left; width: 30%; text-align: right;">{{ sum }}p</h5>
 </div>
 `;
 const editMenuProductCard = `

@@ -6,7 +6,7 @@
     
 	<link rel="stylesheet" href="{{ url('/css/bootstrap.min.css') }}">
 	<link href="{{ url('css/fonts.css') }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ URL::to('/') }}/images/favicon.png"/>
+	<link rel="icon" type="image/png" href="{{ URL::to('/') }}/favicon.ico"/>
     
 	<title>QRMenus</title>
 </head>

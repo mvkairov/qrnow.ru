@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="{{ url('/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ url('css/admin.css')}} ">
 	<link rel="stylesheet" href="{{ url('css/fonts.css') }}">
-	<link rel="icon" type="image/png" href="{{ URL::to('/') }}/images/favicon.png"/>
+	<link rel="icon" type="image/png" href="{{ URL::to('/') }}/favicon.ico"/>
 
     <!-- внешние скрипты -->
 	<script src="{{ url('/js/jquery-3.5.1.min.js') }}"></script>

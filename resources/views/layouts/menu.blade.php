@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="{{ url('/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ url('/css/usermenu.css') }}">
 	<link rel="stylesheet" href="{{ url('/css/fonts.css') }}">
-	<link rel="icon" type="image/png" href="{{ URL::to('/') }}/images/favicon.png"/>
+	<link rel="icon" type="image/png" href="{{ URL::to('/') }}/favicon.ico"/>
     <style>
         .intro {
             background: url("{{ URL::asset('storage/menus/' . $menu['id'] . '/' . $menu['img']) }}") center no-repeat;

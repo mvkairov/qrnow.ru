@@ -82,7 +82,7 @@
 
 				<!-- лого -->
 				<nav class="nav">
-					<a class="nav_link"><img style="max-width: 5em; max-height: 5em;" src="{{ URL::to('/') }}/images/favicon.png" alt=""></a>
+					<a class="nav_link"><img style="max-width: 3em; max-height: 3em;" src="{{ URL::to('/') }}/images/favicon.png" alt=""></a>
 				</nav>
 
 				<!-- иконка корзины -->

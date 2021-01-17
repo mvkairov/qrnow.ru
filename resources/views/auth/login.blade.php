@@ -9,7 +9,7 @@
             @csrf
             <div class="form-group">
                 <label>E-mail</label>
-                <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <label>Пароль</label>
-                <input class="form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" required autocomplete="current-password">
+                <input class="form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" autocomplete="current-password">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -27,13 +27,13 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Войти</button>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary m-1">
                 <a href="{{ route('register') }}"
                         style="text-decoration: none; color: inherit;">
                         Нет аккаунта?</a>
             </button>
             @if (Route::has('password.request'))
-                <button class="btn btn-primary">
+                <button class="btn btn-primary m-1">
                     <a href="{{ route('password.request') }}"
                         style="text-decoration: none; color: inherit;">
                         {{ __('Забыли пароль?') }}</a>

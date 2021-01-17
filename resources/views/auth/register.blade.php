@@ -11,7 +11,7 @@
             @csrf
             <div class="form-group">
                 <label>Ваше имя</label>
-                <input class="form-control @error('name') is-invalid @enderror" type="text" id="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <input class="form-control @error('name') is-invalid @enderror" type="text" id="name" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label>E-mail</label>
-                <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label>Пароль</label>
-                <input class="form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" required autocomplete="new-password">
+                <input class="form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" autocomplete="new-password">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label>Подтвердите пароль</label>
-                <input class="form-control" type="password" id="password-confirm" name="password_confirmation" required autocomplete="new-password">
+                <input class="form-control" type="password" id="password-confirm" name="password_confirmation" autocomplete="new-password">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -46,8 +46,8 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-            <button class="btn btn-primary">
+            <button type="submit" class="btn btn-primary m-1">Зарегистрироваться</button>
+            <button class="btn btn-primary m-1">
                 <a href="{{ route('login') }}"
                         style="text-decoration: none; color: inherit;">
                         Уже есть аккаунт?</a>

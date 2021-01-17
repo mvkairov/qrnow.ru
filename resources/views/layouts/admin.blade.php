@@ -46,22 +46,22 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			@if(isset($menu))
 				<a class="ml-auto" href="{{ url('/start') }}">
-					<button type="button" class="btn btn-md btn-dark" style="margin-right: 5px;">
+					<button type="button" class="btn btn-md btn-dark m-1" style="margin-right: 5px;">
 						Главная
 					</button>
 				</a>
 				<a href="{{ url('/menu/' . $menu['id'] . '/orders') }}">
-					<button type="button" class="btn btn-md btn-secondary" style="margin-right: 5px;">
+					<button type="button" class="btn btn-md btn-secondary m-1" style="margin-right: 5px;">
 						Заказы
 					</button>
 				</a>
 				<a href="{{ url('/menu/' . $menu['id'] . '/edit') }}">
-					<button type="button" class="btn btn-md btn-secondary" style="margin-right: 5px;">
+					<button type="button" class="btn btn-md btn-secondary m-1" style="margin-right: 5px;">
 						Редактировать
 					</button>
 				</a>
 				<a href="{{ url('/menu/' . $menu['id'] . '/places') }}">
-					<button type="button" class="btn btn-md btn-secondary" style="margin-right: 5px;">
+					<button type="button" class="btn btn-md btn-secondary m-1" style="margin-right: 5px;">
 						QR-коды
 					</button>
 				</a>
@@ -69,13 +69,13 @@
 			<span class="@if(!isset($menu)) ml-auto @endif">
 				@if (!isset($menu) and Auth::user()->hasVerifiedEmail() != 1)
 					<a href="{{ url('/email/verify') }}">
-						<button type="button" class="btn btn-md btn-primary">
+						<button type="button" class="btn btn-md btn-primary m-1">
 							Подтвердите ваш e-mail
 						</button>
 					</a>
 				@endif
 				<button type="button" 
-						class="btn btn-md btn-danger" 
+						class="btn btn-md btn-danger m-1" 
 						onclick="event.preventDefault();
 								document.getElementById('logout-form').submit();">
 						Выйти</button>

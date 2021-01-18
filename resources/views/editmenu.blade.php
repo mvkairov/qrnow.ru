@@ -12,11 +12,16 @@
     <style>
         body {
             padding-right: 0 !important;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
         }
         * {
             transition: 0.2s !important;
         }
-    </style>	
+        .intro {
+            background: url("{{ URL::asset('storage/menus/' . $menu['id'] . '/' . $menu['img']) }}") center no-repeat;
+        }
+    </style>
 
     <!-- внешние скрипты -->
 	<script src="{{ url('/js/jquery-3.5.1.min.js') }}"></script>
@@ -58,7 +63,7 @@
 	</header>
 
     <!-- редактор основной информации меню -->
-	<div style="margin: 0 auto; background-color: #eee; background: url('{{ URL::asset('storage/menus/' . $menu['id'] . '/' . $menu['img']) }}') center no-repeat;" class="intro col-xl-5 col-md-7 col-sm-11">
+	<div style="margin: 0 auto; background-color: #eee; background-attachment: fixed;" class="intro col-xl-5 col-md-7 col-sm-11">
 		<div class="container">
 			<div class="intro_inner">
 				<h1 style="font-size: 50px;" class="intro_title" id="menuName">

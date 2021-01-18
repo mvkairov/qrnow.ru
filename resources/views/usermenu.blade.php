@@ -3,7 +3,7 @@
 
 @section('content')
 <!-- название и адрес -->
-<div class="intro">
+<div class="intro" style="background-attachment: fixed;">
 	<div class="container">
 		<div class="intro_inner">
 			<h1 class="intro_title">{{ $menu['name'] }}</h1>

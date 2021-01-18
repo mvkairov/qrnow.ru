@@ -22,7 +22,6 @@ const listOrder = `
     <h5>Оплата {{# if payByCard}}картой{{ else }}наличными{{/ if }}</h5>
     {{# if comment }}
         <p>комментарий: {{ comment }}</p>
-        <hr>
     {{/ if }}
     <hr>    
     {{# each products }}
@@ -142,7 +141,7 @@ const cartProductsList = `
 `;
 const waitProductsList = `
 <div class="product" style="max-width: 100%; overflow: hidden;" data-toggle="modal" data-target="#productModalCard" data-product="{{ id }}">
-    <h5 class="food-name card-title" style="float: left; width: 70%;">{{ name }} {{ price }}р x {{ count }} = </h5>
+    <h6 class="food-name card-title" style="float: left; width: 70%;">{{ name }} {{ price }}р x {{ count }} = </h6>
     <h5 class="food-price card-title" style="float: left; width: 30%; text-align: right;">{{ sum }}p</h5>
 </div>
 `;

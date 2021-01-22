@@ -24,6 +24,7 @@
 	<script src="{{ url('/js/templates.js') }}"></script>
 	<script src="{{ url('/js/popper.min.js') }}"></script>
 	<script src="{{ url('/js/bootstrap.min.js') }}"></script>
+	<script src="{{ url('/js/fontawesome.js') }}"></script>
     <!-- подготовка ajax -- необходимо для отправки форм -->
 	<script>
 		$.ajaxSetup({
@@ -59,10 +60,13 @@
 				<!-- иконка официанта -->
 				<nav class="nav">
 					<button style="background: none; border:none; padding: 1px" class="dropdown-toggle nav_link" type="button" id="garconButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-bell" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<!-- <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-bell" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 						  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
 						  <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-						</svg>
+						</svg> -->
+                        <object type="image/svg+xml" data="picture.svg">
+						    <img style="width: 3em" src="{{ url('/images') }}/waiter.svg" alt="Fallback">
+						</object>
 					</button>
 					<div class="dropdown-menu" aria-labelledby="garconButton">
 						<button style="font-size: 17px; padding: 4px 4px;" class="dropdown-item" data-toggle="modal" data-target="#garconModal" id="garcon">Позвать официанта</button>
@@ -74,9 +78,12 @@
                     <!-- иконка кальянщика -->
                     <nav class="nav">
                         <button style="background: none; border: none; padding: 1px" class="dropdown-toggle nav_link" type="button" id="hookahButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-funnel" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
-                            </svg>
+                            <!-- <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-funnel" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                            </svg> -->
+                            <object type="image/svg+xml" data="picture.svg">
+                                <img style="width: 3em" src="{{ url('/images') }}/hookah.svg" alt="Фолбэк">
+                            </object>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="hookahButton">
                             <button style="font-size: 17px; padding: 4px 4px;" class="dropdown-item" data-toggle="modal" data-target="#hookahModal" id="hookah">Позвать кальянщика</button>
@@ -135,9 +142,34 @@
 		</div>
 	</header>
 
-
+    
+    <!-- основная часть страницы -->
     @yield('content')
 
+
+    <!-- футер -->
+    <footer class="page-footer bg-dark">
+		<div style="background-color: #f36223;">
+			<div class="container">
+				<div class="py-4 row d-flex align-items-center">
+					<div class="col-md-12 text-center">
+						<a style="margin: 0 15px"><i style="color:#fff; font-size: 2em;" class="fa fa-vk" aria-hidden="true"></i></a>
+						<a style="margin: 0 15px"><i style="color: #fff; font-size: 2em;" class="fa fa-telegram" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container text-center text-md-left mt-5">
+			<div class="row">
+				<div class="col-md-3 mx-auto mb-4">
+					<h6 style="color:#fff" class="text-uppercase font-weight-bold">Авторы иконок</h6>
+					<hr class="mb-4 mt-0 d-inline-block mx-auto" style="background-color: #f36223; width: 150px; height: 2px ">
+					<div style="color: #fff;"><a href="https://www.flaticon.com/ru/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/ru/" title="Flaticon">www.flaticon.com</a></div>
+					<div style="color: #fff;"><a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/ru/" title="Flaticon">www.flaticon.com</a></div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 	<!-- модальные окна -->
 

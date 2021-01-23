@@ -16,6 +16,9 @@
             font-family: 'Montserrat', sans-serif;
             background-color: #fff;
         }
+        button:focus, input[type="button"]:focus {
+            outline: none;
+        }
     </style>
 
      <!-- внешние скрипты -->

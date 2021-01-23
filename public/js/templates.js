@@ -84,8 +84,10 @@ const userMenuProductCard = `
                         </div>
                         <hr>
                         <p class="card-text-small">{{ description }}</p>
-                        <button style="box-shadow: none" class="col-12 btn btn-carrot" type="button" data-toggle="collapse" data-target=".counterCollapse{{ id }}" aria-expanded="false"> Добавить в корзину
-                        </button>
+
+                        <button style="box-shadow: none" class="col-12 btn btn-carrot show addToCartBtn counterCollapse{{ id }}" type="button" data-toggle="collapse" data-target=".counterCollapse{{ id }}" aria-expanded="false">Добавить в корзину</button>
+                        <button class="deleteFromCart" data-toggle="collapse" data-target=".counterCollapse{{ id }}" hidden></button>
+                        
                         <div style="padding: 0;" class="col-12 collapse counterCollapse{{ id }}">
                             <div style="padding: 0;margin-top: 10px;" class="btn-group col-12" role="group" aria-label="Basic example">
                                 <button style="box-shadow: none; border-radius: 5px;" type="button" class="col-5 btn btn-carrot minus">-</button>

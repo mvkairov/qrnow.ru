@@ -196,6 +196,10 @@
 		$('#search').click();
 	});
 
+	// нажатие на "добавить в корзину"
+	$(document).on('click', '.addToCartBtn', function() {
+		$(this).parents('.product:first').find('.plus').click();
+	});
 	// добавить блюдо в корзину
 	$(document).on('click', '.plus', function() {
 		let productNode = $(this).parents('.product:first');
@@ -216,6 +220,9 @@
 			recount_order_sum();
 			$(`[data-product="${product['id']}"]`).find('.counter').html(product['counter']);
 			$('#cartProductCount').html(products.filter(p => p.counter > 0).length);
+
+			if (product['counter'] == 0)
+				$(`[data-product="${product['id']}"]`).find('.deleteFromCart').click();
 		}
 	});
 	// пересчёт суммы заказа

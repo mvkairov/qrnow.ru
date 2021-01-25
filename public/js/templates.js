@@ -39,7 +39,7 @@ const listCall = `
     <button class="btn btn-success deleteCallBtn" data-toggle="modal" data-target="#deleteCallCard">Готово</button>
 </li>
 `;
-const userMenuProductModal = `
+const productModalCard = `
 <div class="card" style="border-color: #fff">
     <img style="border-radius: 20px" src="{{ img }}" alt="" class="card-img-top">
     <div class="card-body">
@@ -69,60 +69,63 @@ const userMenuProductModal = `
 </div>
 `;
 const userMenuProductCard = `
-<div style="padding-top: 50px;" class="card-body product" data-product="{{ id }}">
-    <div class="container-fluid padding">
-        <div class="row padding">
-            <div class="col-12">
-                <div class="card" style="border-color: #fff">
-                    <a data-toggle="modal" data-target="#productModalCard">
-                        <img style="border-radius: 20px" src="{{ img }}" alt="" class="card-img-top">
-                    </a>
-                    <div class="card-body">
-                        <div style="max-width: 100%; overflow: hidden;">
-                            <h4 class="food-name card-title" style="float: left; width: 50%;">{{ name }}</h4>
-                            <h4 class="food-price card-title" style="float: left; width: 50%; text-align: right;">{{ price }}p</h4>
-                        </div>
-                        <hr>
-                        <p class="card-text-small">{{ description }}</p>
+<div class="card product pb-2" style="border-color: #fff;" data-product="{{ id }}">
+    <a data-toggle="modal" data-target="#productModalCard">
+        <img style="border-radius: 20px; max-height: 50vh; object-fit: cover;" src="{{ img }}" alt="" class="card-img-top">
+    </a>
+    <div class="card-body">
+        <div style="max-width: 100%; overflow: hidden;">
+            <h4 class="food-name card-title" style="float: left; width: 50%;">{{ name }}</h4>
+            <h4 class="food-price card-title" style="float: left; width: 50%; text-align: right;">{{ price }}p</h4>
+        </div>
+        <hr>
+        <p class="card-text-small">{{ description }}</p>
 
-                        <button style="box-shadow: none" class="col-12 btn btn-carrot show addToCartBtn counterCollapse{{ id }}" type="button" data-toggle="collapse" data-target=".counterCollapse{{ id }}" aria-expanded="false">Добавить в корзину</button>
-                        <button class="deleteFromCart" data-toggle="collapse" data-target=".counterCollapse{{ id }}" hidden></button>
-                        
-                        <div style="padding: 0;" class="col-12 collapse counterCollapse{{ id }}">
-                            <div style="padding: 0;margin-top: 10px;" class="btn-group col-12" role="group" aria-label="Basic example">
-                                <button style="box-shadow: none; border-radius: 5px;" type="button" class="col-5 btn btn-carrot minus">-</button>
-                                <button style="box-shadow: none; background-color: #fff; border-color: #fff; color: #000;" type="button" class="col-2 btn btn-carrot counter">{{ counter }}</button>
-                                <button style="box-shadow: none; border-radius: 5px;" type="button" class="btn btn-carrot col-5 plus">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <button style="box-shadow: none" class="col-12 btn btn-carrot show addToCartBtn counterCollapse{{ id }}" type="button" data-toggle="collapse" data-target=".counterCollapse{{ id }}" aria-expanded="false">Добавить в корзину</button>
+        <button class="deleteFromCart" data-toggle="collapse" data-target=".counterCollapse{{ id }}" hidden></button>
+        
+        <div style="padding: 0;" class="col-12 collapse counterCollapse{{ id }}">
+            <div style="padding: 0;margin-top: 10px;" class="btn-group col-12" role="group" aria-label="Basic example">
+                <button style="box-shadow: none; border-radius: 5px;" type="button" class="col-5 btn btn-carrot minus">-</button>
+                <button style="box-shadow: none; background-color: #fff; border-color: #fff; color: #000;" type="button" class="col-2 btn btn-carrot counter">{{ counter }}</button>
+                <button style="box-shadow: none; border-radius: 5px;" type="button" class="btn btn-carrot col-5 plus">+</button>
             </div>
         </div>
     </div>
 </div>
 `;
 const userMenuSectionCard = `
-<div style="border-radius: 20px; border-color: #fff; margin: 40px 10px;" class="card section" data-section="{{ id }}">
-    <div style="border-radius: 20px; background: url({{ img }}) center no-repeat; height: 150px;" class="card-header heading{{ id }}">
+<div style="border-radius: 20px; border-color: #fff; padding: 0; margin: 20px 10px;" class="card section" data-section="{{ id }}">
+    <div style="border-radius: 20px; background: url('{{ img }}') center no-repeat; 
+                height: 150px; background-attachment: fixed; background-size: cover;" 
+         class="card-header">
         <h5 class="mb-0">
-        <button style="border: medium none;
-            text-shadow: 2px 2px 2px #333;
-            color: #fff;
-            font-size: 40px;
-            box-shadow: none;
-            width: 100%;
-            height: 100%;
-            background-image: none; 
-            background: transparent;
-            float: left;
-            background-color: transparent;" class="btn" type="button" data-toggle="collapse" data-target=".collapse{{ id }}" aria-expanded="true">
-            {{ name }}
-        </button>
+            <button style="border: medium none;
+                text-shadow: 2px 2px 2px #333;
+                color: #fff;
+                font-size: 40px;
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                background-image: none; 
+                background: transparent;
+                float: left;
+                background-color: transparent;" class="btn" type="button" data-toggle="collapse" data-target=".collapse{{ id }}" aria-expanded="true" aria-controls="collapseOne">
+                {{ name }}
+            </button>
         </h5>
     </div>
-    <div class="collapse collapse{{ id }} productWrap" data-parent="#productsList">
 
+    <div class="collapse collapse{{ id }}" data-parent="#productsList">
+        <div style="padding-top: 20px; padding-bottom: -10px;" class="card-body">
+            <div class="container-fluid padding">
+                <div class="row padding">
+                    <div class="col-12 productWrap">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 `;
@@ -148,44 +151,41 @@ const waitProductsList = `
 </div>
 `;
 const editMenuProductCard = `
-<div style="padding-top: 10px;" class="card-body product" data-product="{{ id }}">
-    <div class="container-fluid padding">
-        <div class="row padding">
-            <div class="col-12">
-                <div class="card border-light" style="background-color: #fff;">
-                    <a data-toggle="modal" data-target="#productModalCard" style="opacity: {{# if available }} 1 {{ else }} 0.5 {{/ if }};">
-                        <img style="border-radius: 20px" src="{{ img }}" alt="" class="card-img-top">
-                    </a>
-                    <div class="card-body">
-                        <div style="max-width: 100%; overflow: hidden;">
-                            <h4 class="food-name card-title" style="float: left; width: 50%;">{{ name }}</h4>
-                            <h4 class="food-price card-title" style="float: left; width: 50%; text-align: right;">{{ price }}p</h4>
-                        </div>
-                        <hr>
-                        <p class="card-text-small">{{ description }}</p>
-                        
-                        <button class="btn btn-info col-12 m-1 productUnavailable"
-                                style="display: {{# if available }} block {{ else }} none {{/ if }}; border-radius: 30px;">
-                                Убрать из меню</button>
-                        <button class="btn btn-success col-12 m-1 productAvailable"
-                                style="display: {{# if available }} none {{ else }} block {{/ if }}; border-radius: 30px;">
-                                Вернуть в меню</button>
-                        <button class="btn btn-carrot col-12 m-1 updateProductBtn"
-                                style="margin-top: 10px; border-radius: 30px;"
-                                data-toggle="modal" data-target="#addProductCard">Изменить блюдо</button>
-                        <button class="btn btn-danger col-12 m-1 deleteProductBtn"
-                                style="margin-top: 10px; border-radius: 30px;"
-                                data-toggle="modal" data-target="#deleteProductCard">Удалить блюдо</button>
-                    </div>
-                </div>
-            </div>
+<div class="card border-light product" style="background-color: #fff;" data-product="{{ id }}">
+    <a data-toggle="modal" data-target="#productModalCard" style="opacity: {{# if available }} 1 {{ else }} 0.5 {{/ if }};">
+        <img style="border-radius: 20px; max-height: 50vh; object-fit: cover;" src="{{ img }}" alt="" class="card-img-top">
+    </a>
+    <div class="card-body">
+        <div style="max-width: 100%; overflow: hidden;">
+            <h4 class="food-name card-title" style="float: left; width: 50%;">{{ name }}</h4>
+            <h4 class="food-price card-title" style="float: left; width: 50%; text-align: right;">{{ price }}p</h4>
         </div>
+        <hr>
+        <p class="card-text-small">{{ description }}</p>
+        
+        <button class="btn btn-info col-12 m-1 productUnavailable"
+                style="display: {{# if available }} block {{ else }} none {{/ if }}; border-radius: 30px;">
+                Убрать из меню</button>
+        <button class="btn btn-success col-12 m-1 productAvailable"
+                style="display: {{# if available }} none {{ else }} block {{/ if }}; border-radius: 30px;">
+                Вернуть в меню</button>
+        <button class="btn btn-carrot col-12 m-1 updateProductBtn"
+                style="margin-top: 10px; border-radius: 30px;"
+                data-toggle="modal" data-target="#addProductCard">Изменить блюдо</button>
+        <button class="btn btn-danger col-12 m-1 deleteProductBtn"
+                style="margin-top: 10px; border-radius: 30px;"
+                data-toggle="modal" data-target="#deleteProductCard">Удалить блюдо</button>
     </div>
 </div>
 `;
 const editMenuSectionCard = `
-<div style="margin: 20px auto; border-radius: 20px; border-color: #fff;" class="card col-xl-5 col-md-7 col-sm-11 section" data-section="{{ id }}">
-    <div style="border-radius: 20px; background: url('{{ img }}') center no-repeat; height: 150px; opacity: {{# if available }} 1 {{ else }} 0.5 {{/ if }};" class="card-header">
+<div style="margin: 20px auto; border-radius: 20px; border-color: #fff; padding: 0;" 
+     class="card col-xl-5 col-md-7 col-sm-11 section" 
+     data-section="{{ id }}">
+    <div style="border-radius: 20px; background: url('{{ img }}') center no-repeat; 
+                background-attachment: fixed; background-size: cover; 
+                height: 150px; opacity: {{# if available }} 1 {{ else }} 0.5 {{/ if }};" 
+         class="card-header">
         <h5 class="mb-0">
             <button style="border: medium none;
                 text-shadow: 2px 2px 2px #333;
@@ -202,20 +202,26 @@ const editMenuSectionCard = `
             </button>
         </h5>
     </div>
-    <button class="btn btn-info col-12 sectionUnavailable"
-            style="display: {{# if available }} block {{ else }} none {{/ if }}; margin-top: 10px; border-radius: 30px;">
-            Убрать из меню</button>
-    <button class="btn btn-success col-12 sectionAvailable"
-            style="display: {{# if available }} none {{ else }} block {{/ if }}; margin-top: 10px; border-radius: 30px;">
-            Вернуть в меню</button>
-
-    <button style="margin-top: 10px; border-radius: 30px;" class="btn btn-danger col-12 deleteSectionBtn" data-toggle="modal" data-target="#deleteSectionCard">Удалить раздел</button>
-    <div class="collapse {{# if available }} collapse{{ id }} {{/ if }}" 
-                data-parent="#productsList">
+    <div class="collapse {{# if available }} collapse{{ id }} {{/ if }}" data-parent="#productsList">
+        <button class="btn btn-info col-12 sectionUnavailable"
+                style="display: {{# if available }} block {{ else }} none {{/ if }}; 
+                       margin-top: 10px; border-radius: 30px;">Убрать из меню</button>
+        <button class="btn btn-success col-12 sectionAvailable"
+                style="display: {{# if available }} none {{ else }} block {{/ if }}; 
+                margin-top: 10px; border-radius: 30px;">Вернуть в меню</button>
+        <button style="margin-top: 10px; border-radius: 30px;" class="btn btn-danger col-12 deleteSectionBtn" data-toggle="modal" data-target="#deleteSectionCard">Удалить раздел</button>   
         <button style="margin-top: 10px;" class="btn btn-carrot col-12 addProductBtn" data-toggle="modal" data-target="#addProductCard">Добавить блюдо</button>
-        <span class="productWrap">
-            
-        </span>
+        
+        <div style="padding-top: 10px;" class="card-body">
+            <div class="container-fluid padding">
+                <div class="row padding">
+                    <div class="col-12 productWrap">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 `;
@@ -240,7 +246,7 @@ function new_list_place(data) {
 
 // usermenu
 function update_usermenu_product_modal(data) {
-    let modal = Handlebars.compile(userMenuProductModal);
+    let modal = Handlebars.compile(productModalCard);
     return modal(data);
 }
 function new_usermenu_product(data) {

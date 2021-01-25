@@ -11,6 +11,8 @@
     <style>
         .intro {
             background: url("{{ URL::asset('storage/menus/' . $menu['id'] . '/' . $menu['img']) }}") center no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
         }
         body {
             font-family: 'Montserrat', sans-serif;

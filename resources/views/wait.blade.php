@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="intro" style="background-attachment: fixed;">
+<div class="intro">
 	<div class="container">
 		<div class="intro_inner">
 			<h1 class="intro_title">Спасибо! Ваш заказ скоро будет готов <br>

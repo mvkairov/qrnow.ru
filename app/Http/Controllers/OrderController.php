@@ -38,6 +38,7 @@ class OrderController extends Controller
                     $product = Product::find(intval($id));
                     $products[$product->name] = $count;
                 }
+                $order->time = strtotime($order->updated_at);
                 $order->products = $products;
                 $order->place = Place::find($order->placeId)->name;
                 $orders[] = $order;

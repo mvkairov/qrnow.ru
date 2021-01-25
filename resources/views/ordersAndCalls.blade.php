@@ -80,8 +80,14 @@
 		cur_order = {},		// удаляемый заказ
 		cur_call = {};		// удаляемый вызов
 
-	// загрузка заказов/вызовов
-	$(document).ready(function () {
+	let refreshRate = setInterval(function() {		// обновление заказов/вызовов
+		getOrders();
+		getCalls();
+	}, 25000);
+
+	
+	// загрузка заказов
+	function getOrders() {
 		$.ajax({
 			url: '{{ url("/getOrders/" . $menu["id"]) }}',
 			type: 'get',
@@ -92,7 +98,8 @@
 			success: function(data) {
 				let order_data = JSON.parse(data);
 				for (let order of order_data) {
-					order['time'] = order['updated_at'].slice(11, 16);
+					let date = new Date(order['time'] * 1000);
+					order['time'] = date.getHours() + ':' + date.getMinutes();
 					order['token'] = $('meta[name="csrf-token"]').attr('content');
 					order['payByCard'] = (order['paymentMethod'] == 'card');
 					orders.push(order);
@@ -100,6 +107,9 @@
 				}
 			}
 		});
+	}
+	// загрузка вызовов
+	function getCalls() {
 		$.ajax({
 			url: '{{ url("/getCalls/" . $menu["id"]) }}',
 			type: 'get',
@@ -110,7 +120,8 @@
 			success: function(data) {
 				let call_data = JSON.parse(data);
 				for (let call of call_data) {
-					call['time'] = call['updated_at'].slice(11, 16);
+					let date = new Date(call['time'] * 1000);
+					call['time'] = date.getHours() + ':' + date.getMinutes();
 					call['token'] = $('meta[name="csrf-token"]').attr('content');
 					call['garcon'] = (call['type'] == 'garcon');
 					calls.push(call);
@@ -118,6 +129,12 @@
 				}
 			}
 		});
+	}
+
+	// загрузка заказов/вызовов сразу после загрузки
+	$(document).ready(function () {
+		getOrders();
+		getCalls();
 	});
 
 	// добавить заказ на страницу

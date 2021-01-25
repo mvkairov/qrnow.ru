@@ -25,6 +25,7 @@ class CallController extends Controller
                 Call::destroy($call->id);
             else {
                 $call->place = Place::find($call->placeId)->name;
+                $call->time = strtotime($call->updated_at);
                 $calls[] = $call;
             }
         return json_encode($calls);

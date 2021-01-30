@@ -8,13 +8,13 @@
 	<link href="{{ url('css/fonts.css') }}" rel="stylesheet">
 	<link rel="icon" type="image/png" href="{{ URL::to('/') }}/favicon.ico"/>
     
-	<title>QRMenus</title>
+	<title>QRnow - аутентификация</title>
 </head>
 <body>
     <!-- навбар -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="nav_link"><img style="max-width: 3em; max-height: 3em;" src="{{ URL::to('/') }}/images/favicon.png" alt=""></a>
-        <a class="navbar-brand">QRME</a>
+        <a class="navbar-brand">QRnow</a>
     </nav>
 
     <!-- форма аутентификации -->

@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
 
+@section('title')
+Ваши меню
+@endsection
+
 @section('content')
 <div class="row">
 	<div style="text-align: center; margin-top: 10px;" class="col">

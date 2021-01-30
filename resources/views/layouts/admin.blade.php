@@ -25,14 +25,14 @@
 		});
 	</script>
 
-	<title>QRMenus</title>
+	<title>@yield('title')</title>
 </head>
 <body>
 	<!-- навбар -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<!-- статичная часть -->
 		<a class="navbar-brand"><img src="{{ URL::to('/') }}/images/favicon.png" width="35" height="35" alt="" loading="lazy"></a>
-		<a class="navbar-brand">QRMenus</a>
+		<a class="navbar-brand">QRnow</a>
 		<ul class="navbar-nav mr-auto d-none d-md-block pl-1" style="border-left: 1px solid LightGray;">
 			<li class="nav-item active">
 				<a class="nav-link">Здравствуйте, {{ Auth::user()->name }}! <span class="sr-only">(current)</span></a>

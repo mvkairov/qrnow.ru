@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title')
+QR-коды в {{ $menu['name'] }}
+@endsection
 
 @section('content')
 <div class="row">

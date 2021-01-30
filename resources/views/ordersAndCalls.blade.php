@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+Заказы и вызовы в {{ $menu['name'] }}
+@endsection
+
 @section('content')
 <div class="row">
 	<!-- заказы -->
@@ -96,6 +100,7 @@
 			processData: false,
 			data: '', 
 			success: function(data) {
+				$('#orders').empty();
 				let order_data = JSON.parse(data);
 				for (let order of order_data) {
 					let date = new Date(order['time'] * 1000);
@@ -118,6 +123,7 @@
 			processData: false,
 			data: '', 
 			success: function(data) {
+				$('#calls').empty();
 				let call_data = JSON.parse(data);
 				for (let call of call_data) {
 					let date = new Date(call['time'] * 1000);

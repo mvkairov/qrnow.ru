@@ -6,7 +6,7 @@
    <meta name="google-site-verification" content="uDVkeAQbr3fwoPe9J-P2nADF40SZyqfGsKqUdZPSCkU" />
    <meta name="yandex-verification" content="cef9b2fdb85905bb" />
 	<link rel="icon" type="image/png" href="{{ URL::to('/') }}/images/favicon.png"/>
-   <title>QRMenus</title>
+   <title>QRnow</title>
 </head>
 
 <body>

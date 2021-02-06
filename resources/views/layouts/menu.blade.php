@@ -26,7 +26,7 @@
      <!-- внешние скрипты -->
 	<script src="{{ url('/js/jquery-3.5.1.min.js') }}"></script>
 	<script src="{{ url('/js/handlebars-v4.7.6.js') }}"></script>
-	<script src="{{ url('/js/templates.js') }}"></script>
+	<script src="{{ url('/js/templates/menu.js') }}"></script>
 	<script src="{{ url('/js/popper.min.js') }}"></script>
 	<script src="{{ url('/js/bootstrap.min.js') }}"></script>
 	<script src="{{ url('/js/fontawesome.js') }}"></script>

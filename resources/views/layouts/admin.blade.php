@@ -9,11 +9,16 @@
 	<link rel="stylesheet" href="{{ url('css/admin.css')}} ">
 	<link rel="stylesheet" href="{{ url('css/fonts.css') }}">
 	<link rel="icon" type="image/png" href="{{ URL::to('/') }}/favicon.ico"/>
+	<style>
+		.custom-file-input ~ .custom-file-label::after {
+			content: "Поиск" !important;
+		}
+	</style>
 
     <!-- внешние скрипты -->
 	<script src="{{ url('/js/jquery-3.5.1.min.js') }}"></script>
 	<script src="{{ url('/js/handlebars-v4.7.6.js') }}"></script>
-	<script src="{{ url('/js/templates.js') }}"></script>
+	<script src="{{ url('/js/templates/admin.js') }}"></script>
 	<script src="{{ url('/js/popper.min.js') }}"></script>
 	<script src="{{ url('/js/bootstrap.min.js') }}"></script>
     <!-- подготовка ajax -- необходимо для отправки форм -->

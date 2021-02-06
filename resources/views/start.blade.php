@@ -10,7 +10,36 @@
 	<div style="text-align: center; margin-top: 10px;" class="col">
 		<h4>Создание</h4>
 		<hr>
-		<button style="height: 100px; margin-top: 10px;" class="col-12 btn btn-inline-carrot" data-toggle="modal" data-target="#addMenuModal">Создать новое меню</button>
+		<div class="modal-dialog">
+			<div class="modal-content" style="border-color: #f36223;">
+				<div style="padding: 20px; background-color: #fff; border-radius: 20px; min-height: 70vh;" class="col-12">
+					<form action="/addMenu" enctype="multipart/form-data" method="POST" class="menuForm">
+						{{ csrf_field() }}
+						<div class="form-group">
+							<label style="font-size: 20px;">Название</label>
+							<input style="border-radius: 20px; border-color: #e14223; box-shadow: none" type="email" class="form-control" name="name">
+						</div>
+						<div class="form-group">
+							<label style="font-size: 20px;">Адрес</label>
+							<input style="border-radius: 20px; border-color: #e14223; box-shadow: none" type="email" class="form-control" name="address">
+						</div>
+						<div class="form-group">
+							<label style="font-size: 20px;">В вашем заведении есть кальяны?</label><br>
+							<label><input type="radio" name="hookah" value="1"> Да</label>
+							<label><input type="radio" name="hookah" value="0"> Нет</label>
+						</div>
+						<div class="form-group">
+							<label style="font-size: 20px; margin-top: -8px;">Фоновое изображение меню</label>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="img" id="customFile">
+								<label class="custom-file-label" for="customFile">Выберите фон</label>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-secondary col-12 submitMenu" style="margin-top: 10px;">Перейти к конструктору</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div style="text-align: center; margin-top: 10px;" class="col">
 		<h4>Ваши меню</h4>
@@ -30,43 +59,6 @@
 
 
 @section('modal')
-	<!-- форма создания меню -->
-<div class="modal fade" id="addMenuModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"> 
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div style="padding-bottom: 0; border-bottom: none;" class="modal-header">
-				<button style="padding: 10px" type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div style="padding: 20px; background-color: #fff; border-radius: 20px; border-color: #f36223;" class="col-12">
-				<form action="/addMenu" enctype="multipart/form-data" method="POST" class="menuForm">
-					{{ csrf_field() }}
-					<div class="form-group">
-						<label style="font-size: 30px;">Название</label>
-						<input style="border-radius: 20px; border-color: #e14223; box-shadow: none" type="email" class="form-control" name="name">
-					</div>
-					<div class="form-group">
-						<label style="font-size: 30px;">Адрес</label>
-						<input style="border-radius: 20px; border-color: #e14223; box-shadow: none" type="email" class="form-control" name="address">
-					</div>
-					<div class="form-group">
-						<label style="font-size: 30px;">В вашем заведении есть кальяны?</label>
-						<label><input type="radio" name="hookah" value="1"> Да</label>
-						<label><input type="radio" name="hookah" value="0"> Нет</label>
-					</div>
-					<input type="hidden" name="intro_main" value="00">
-					<div class="form-group">
-						<label style="font-size: 30px;">Фоновое изображение меню</label>
-						<input type="file" class="form-control-file" name="img">
-					</div>
-					<button type="submit" class="btn btn-secondary col-12 submitMenu">Перейти к конструктору</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-
 <!-- карточка удаления меню -->
 <div class="modal fade" id="deleteMenuCard" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
@@ -130,6 +122,10 @@
 		let img_data = form.find('input[name="img"]').prop('files');
 		if (img_data[0])
 			form_data.append('img', img_data[0]);
+		else {
+			alert('Выберите фоновое изображение!');
+			return;
+		}
 
 		$.ajax({
 			url: '{{ url("/addMenu") }}',
@@ -169,6 +165,14 @@
 				menus = menus.filter(m => m.id != cur_menu['id']);
 			}
 		});
+	});
+
+	// обновление label выбора фона
+	$(document).on('change', '#customFile', function() {
+		let form = $(this).parents('form:first');
+		let img_data = form.find('input[name="img"]').prop('files');
+		if (img_data[0])
+			$(this).siblings('label:first').html(img_data[0].name);
 	});
 </script>
 @endsection

@@ -15,14 +15,21 @@
             font-family: 'Montserrat', sans-serif;
             background-color: #fff;
         }
+
         * {
             transition: 0.2s !important;
         }
+
         .intro {
             background: url("{{ URL::asset('storage/menus/' . $menu['id'] . '/' . $menu['img']) }}") center no-repeat;
             background-attachment: fixed;
             background-size: cover;
         }
+
+		.custom-file-input ~ .custom-file-label::after {
+			content: "Поиск" !important;
+		}
+
         @media (max-width: 767px) {
             .btn {
                 display: block;
@@ -100,9 +107,7 @@
 	</div>
 
 
-
 	<!-- Модальные окна -->
-
 
         <!-- карточка просмотра блюда -->
     <div class="modal fade" id="productModalCard" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"> 
@@ -132,31 +137,34 @@
                     <form action="/addSection" enctype="multipart/form-data" method="POST" id="addProductForm">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label style="font-size: 30px;">Введите название блюда</label>
+                            <label style="font-size: 20px;">Введите название блюда</label>
                             <input style="border-radius: 20px; border-color: #f36223; box-shadow: none" type="text" class="form-control" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Выберите изображение блюда <span class="text-small" id="updateImgText">(оставьте поле пустым, если не хотите менять изображение)</span></label>
-                            <input style="border-radius: 20px; border-color: #f36223; box-shadow: none" type="file" class="form-control-file" name="img" required>
-                        </div>
+                            <label style="font-size: 20px;">Выберите изображение блюда <span class="text-small" id="updateImgText">(оставьте поле пустым, если не хотите менять изображение)</span></label>
+                            <div class="custom-file">
+								<input type="file" class="custom-file-input" name="img" id="customProductImg">
+								<label class="custom-file-label" for="customProductImg">Выберите фон</label>
+							</div>
+						</div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Укажите цену (в рублях)</label>
+                            <label style="font-size: 20px;">Укажите цену (в рублях)</label>
                             <input style="border-radius: 20px; border-color: #f36223; box-shadow: none" type="number" class="form-control" name="price" required>
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Добавьте краткое описание блюда</label>
+                            <label style="font-size: 20px;">Добавьте краткое описание блюда</label>
                             <textarea style="border-radius: 20px; border-color: #f36223; box-shadow: none" class="form-control" rows="3" name="description" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Ингредиенты</label>
+                            <label style="font-size: 20px;">Ингредиенты</label>
                             <textarea style="border-radius: 20px; border-color: #f36223; box-shadow: none" class="form-control" rows="3" name="ingridients"></textarea>
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Время приготовления</label>
+                            <label style="font-size: 20px;">Время приготовления</label>
                             <input style="border-radius: 20px; border-color: #f36223; box-shadow: none" type="text" class="form-control" name="prepare_time">
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Укажите (при необходимости)</label>
+                            <label style="font-size: 20px;">Укажите (при необходимости)</label>
                             <input style="border-radius: 20px; border-color: #f36223; box-shadow: none" type="number" class="form-control" placeholder="Вес блюда(г)" name="wt">
                             <hr>
                             <input style="border-radius: 20px; border-color: #f36223; box-shadow: none" type="number" class="form-control" placeholder="Калории(ккал)" name="cl">
@@ -208,13 +216,16 @@
                         {{ csrf_field() }}
                         <input type="number" value="{{ $menu['id'] }}" name="menuId" hidden>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Введите название раздела</label>
+                            <label style="font-size: 20px;">Введите название раздела</label>
                             <input style="border-radius: 20px; border-color: #e14223; box-shadow: none" type="email" class="form-control" name="name">
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Выберите фоновое изображение раздела</label>
-                            <input type="file" class="form-control-file" name="img">
-                        </div>
+                            <label style="font-size: 20px;">Выберите изображение раздела</label>
+                            <div class="custom-file">
+								<input type="file" class="custom-file-input" name="img" id="customSectionImg">
+								<label class="custom-file-label" for="customSectionImg">Выберите фон</label>
+							</div>
+						</div>
                         <button type="submit" class="btn btn-carrot col-12 submitSection">Добавить раздел</button>
                     </form>
                 </div>
@@ -254,17 +265,20 @@
                         {{ csrf_field() }}
                         <input type="number" value="{{ $menu['id'] }}" name="id" hidden>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Измените название</label>
+                            <label style="font-size: 20px;">Измените название</label>
                             <input style="border-radius: 20px; border-color: #e14223; box-shadow: none" class="form-control" name="name">
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Введите новый адрес</label>
+                            <label style="font-size: 20px;">Введите новый адрес</label>
                             <input style="border-radius: 20px; border-color: #e14223; box-shadow: none" class="form-control" name="address">
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 30px;">Выберите фоновое изображение <span class="text-small">(оставьте поле пустым, если не хотите менять изображение)</span></label>
-                            <input type="file" class="form-control-file" name="img">
-                        </div>
+                            <label style="font-size: 20px;">Выберите фоновое изображение <span class="text-small">(оставьте поле пустым, если не хотите менять изображение)</span></label>
+                            <div class="custom-file">
+								<input type="file" class="custom-file-input" name="img" id="customMenuImg">
+								<label class="custom-file-label" for="customMenuImg">Выберите фон</label>
+							</div>
+						</div>
                         <button type="submit" class="btn btn-carrot col-12 updateMenu">Внести изменения</button>
                     </form>
                 </div>
@@ -325,9 +339,6 @@
             let productId = $(this).attr('data-product');
             let cur_product = products.filter(p => p.id == productId)[0];
 			update_modal(cur_product);
-			// обновление корзины
-			let cart_products = update_usermenu_cart({'products': products});
-			$('#cartProducts').html(cart_products);
 		});
 		// обновление карточки блюда
         function update_modal(product_data) {
@@ -748,6 +759,14 @@
                     products = products.filter(p => !cur_section['products'].includes(p));
                 }
             });
+        });
+
+        // обновление label выбора фона
+        $(document).on('change', '.custom-file-input', function() {
+            let form = $(this).parents('form:first');
+            let img_data = form.find('input[name="img"]').prop('files');
+            if (img_data[0])
+                $(this).siblings('label:first').html(img_data[0].name);
         });
     </script>
 </body>

@@ -53,7 +53,8 @@ const editMenuSectionCard = `
      data-section="{{ id }}">
     <div class="card-header sectionImg" 
          style="border-radius: 20px; 
-                background: url('{{ img }}') center no-repeat;  
+                background: url('{{ img }}') center no-repeat; 
+                background-size: cover; 
                 height: 150px; 
                 opacity: {{# if available }} 1 {{ else }} 0.5 {{/ if }};">
         <div class="menu-actions">

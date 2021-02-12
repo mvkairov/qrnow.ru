@@ -62,7 +62,15 @@ class ProductController extends Controller
     }
 
     public function updateProduct(Request $request) {
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
         $product = Product::find($request->id);
+        if (!$product)
+            abort(404);
         $parentMenu = Section::find($product->sectionId)->menuId;
         if(!Auth::check() or Auth::id() != Menu::find($parentMenu)->userId)
             abort(403);

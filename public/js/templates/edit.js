@@ -51,10 +51,9 @@ const editMenuSectionCard = `
 <div style="margin: 20px auto; border-radius: 20px; border-color: #fff; padding: 0;" 
      class="card col-xl-5 col-md-7 col-sm-11 section" 
      data-section="{{ id }}">
-    <div class="card-header" 
+    <div class="card-header sectionImg" 
          style="border-radius: 20px; 
-                background: url('{{ img }}') center no-repeat; 
-                background-attachment: fixed; background-size: cover; 
+                background: url('{{ img }}') center no-repeat;  
                 height: 150px; 
                 opacity: {{# if available }} 1 {{ else }} 0.5 {{/ if }};">
         <div class="menu-actions">
@@ -101,7 +100,7 @@ const editMenuSectionCard = `
                 background-image: none; 
                 background: transparent;
                 float: left;
-                background-color: transparent;" class="btn" type="button" data-toggle="collapse" data-target=".collapse{{ id }}">
+                background-color: transparent;" class="btn sectionHeader" type="button" data-toggle="collapse" data-target=".collapse{{ id }}">
                 {{ name }}
             </button>
         </h5>

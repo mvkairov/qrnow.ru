@@ -67,7 +67,8 @@ class MenuController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'img' => 'required',
-            'hookah' => 'required'
+            'hookah' => 'required',
+            'address' => 'required'
         ]);
         $menu = new Menu;
         $menu->name = $request->name;
@@ -84,10 +85,15 @@ class MenuController extends Controller
         
         $menu->save();
         Storage::disk('public')->put('menus/' . strval($menu->id) . '/' . $img_name, file_get_contents($img));
-        return json_encode($menu);  // redirect(url('/menu/' . strval($menu->id) . '/edit'));
+        return json_encode($menu);
     }
 
     public function updateMenu(Request $request) {
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => 'required',
+            'address' => 'required'
+        ]);
         $menu = Menu::find($request->id);
         if (!Auth::check() or (Auth::id() != $menu->userId))
             abort(403);

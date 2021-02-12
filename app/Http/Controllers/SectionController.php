@@ -39,7 +39,30 @@ class SectionController extends Controller
     }
 
     public function updateSection(Request $request) {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $section = Section::find($request->id);
+        if (!$section)
+            abort(404);
+        if (!Auth::check() or Auth::id() != Menu::find($section->menuId)->userId)
+            abort(403);
+        $section->name = $request->name;
+        
+        if ($request->has('img')) {
+            $img = $request->file('img');
+            $name = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $img->getClientOriginalExtension();
+            $img_name = $name . '-at-' . time() . '.' . $extension;
+            
+            File::delete(public_path('/storage/menus/' . strval($section->menuId) . '/' . strval($section->id)) . '/ '. $section->img);        
+            $section->img = $img_name;
+            Storage::disk('public')->put('menus/' . strval($section->menuId) . '/' . strval($section->id) . '/' . $img_name, file_get_contents($img));
+        }
+
+        $section->save();
+        return json_encode($section);
     }
 
     public function changeSectionAvailability(Request $request) {

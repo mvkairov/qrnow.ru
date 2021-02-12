@@ -113,7 +113,7 @@
 
 	<!-- секции с блюдами -->
 	<div style="text-align: center;">
-		<button class="btn btn-carrot col-xl-5 col-md-7 col-sm-11" data-toggle="modal" data-target="#addSectionCard">Добавить раздел</button>
+		<button class="btn btn-carrot col-xl-5 col-md-7 col-sm-11" data-toggle="modal" data-target="#addSectionCard" id="addSectionBtn">Добавить раздел</button>
 	</div>
 	
 	<div class="accordion mb-2" id="productsList">
@@ -155,7 +155,7 @@
                             <input style="border-radius: 20px; border-color: #f36223; box-shadow: none" type="text" class="form-control" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 20px;">Выберите изображение блюда <span class="text-small" id="updateImgText">(оставьте поле пустым, если не хотите менять изображение)</span></label>
+                            <label style="font-size: 20px;">Выберите изображение блюда <span class="text-small updateImgText">(оставьте поле пустым, если не хотите менять изображение)</span></label>
                             <div class="custom-file">
 								<input type="file" class="custom-file-input" name="img" id="customProductImg">
 								<label class="custom-file-label" for="customProductImg">Выберите фон</label>
@@ -226,21 +226,23 @@
                     </button>
                 </div>
                 <div style="padding: 20px; background-color: #fff; border-radius: 20px; border-color: #f36223;" class="col-12">
-                    <form action="/addSection" enctype="multipart/form-data" method="POST">
+                    <form action="/addSection" enctype="multipart/form-data" method="POST" id="addSectionForm">
                         {{ csrf_field() }}
                         <input type="number" value="{{ $menu['id'] }}" name="menuId" hidden>
                         <div class="form-group">
                             <label style="font-size: 20px;">Введите название раздела</label>
-                            <input style="border-radius: 20px; border-color: #e14223; box-shadow: none" type="email" class="form-control" name="name">
+                            <input style="border-radius: 20px; border-color: #e14223; box-shadow: none" type="text" class="form-control" name="name">
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 20px;">Выберите изображение раздела</label>
+                            <label style="font-size: 20px;">Выберите изображение раздела <span class="text-small updateImgText">(оставьте поле пустым, если не хотите менять изображение)</span></label>
                             <div class="custom-file">
 								<input type="file" class="custom-file-input" name="img" id="customSectionImg">
 								<label class="custom-file-label" for="customSectionImg">Выберите фон</label>
 							</div>
 						</div>
                         <button type="submit" class="btn btn-carrot col-12 submitSection">Добавить раздел</button>
+                        <button style="display: none;" type="submit" class="btn btn-carrot col-12 updateSection">Внести изменения</button>
+                   
                     </form>
                 </div>
             </div>
@@ -365,7 +367,7 @@
             $('.submitProduct').parents('form:first').trigger("reset");
             $('.submitProduct').css('display', 'block');
             $('.updateProduct').css('display', 'none');
-            $('#updateImgText').css('display', 'none');
+            $('.updateImgText').css('display', 'none');
             let curSection = $(this).parents('.section:first').attr('data-section');
             $('#addProductCard').find('input[name="sectionId"]').val(curSection);
         });
@@ -448,7 +450,7 @@
             let form = $('#addProductForm');
             $('.submitProduct').css('display', 'none');
             $('.updateProduct').css('display', 'block');
-            $('#updateImgText').css('display', 'block');
+            $('.updateImgText').css('display', 'block');
 
             cur_product = products.filter(p => p.id == $(this).parents('.product:first').attr('data-product'))[0];
             form.find('input[name="price"]').val(cur_product['price']);
@@ -699,6 +701,70 @@
                 }
             });
             return ok;
+        }
+        
+        // очистка формы перед добавлением секции
+        $(document).on('click', '#addSectionBtn', function() {
+            let form = $('#addSectionForm');
+            form.trigger("reset");
+            $('.submitSection').css('display', 'block');
+            $('.updateSection').css('display', 'none');
+            $('.updateImgText').css('display', 'none');
+        });
+        // обновление формы
+        $(document).on('click', '.updateSectionBtn', function() {
+            let form = $('#addSectionForm');
+            form.trigger("reset");
+            $('.submitSection').css('display', 'none');
+            $('.updateSection').css('display', 'block');
+            $('.updateImgText').css('display', 'block');
+
+            cur_section = sections.filter(p => p.id == $(this).parents('.section:first').attr('data-section'))[0];
+            form.find('input[name="name"]').val(cur_section['name']);
+        });
+        // обновление секции
+        $(document).on('click', '.updateSection', function(e) {
+            e.preventDefault();
+            let form = $(this).parents('form:first');
+            let form_data = new FormData();
+            form_data.append('id', cur_section['id']);
+            form_data.append('name', form.find('input[name="name"]').val());
+            form_data.append('menuId', form.find('input[name="menuId"]').val());
+            form_data.append('_token', form.find('input[name="_token"]').val());
+
+            let img_data = form.find('input[name="img"]').prop('files');
+            if (img_data[0])
+                form_data.append('img', img_data[0]);
+            
+            $.ajax({
+                url: '{{ url("/updateSection") }}',
+                type: 'post',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data, 
+                success: function(data) {
+                    form.trigger("reset");
+                    $('#closeSectionCard').click();
+                    let section = JSON.parse(data);
+                    let ch_section = sections.filter(s => s.id == section['id'])[0];
+                    section['img'] = "{{ URL::asset('storage/menus/' . $menu['id']) }}/" + section['id'] + '/' + section['img'];
+                    section['products'] = ch_section['products'];
+                    section['available'] = true;
+                    sections[sections.indexOf(ch_section)] = section;
+                    update_section(section);
+
+                    form.trigger("reset");
+                    $('.submitSection').css('display', 'block');
+                    $('.updateSection').css('display', 'none');
+                    $('.updateImgText').css('display', 'none');
+                }
+            });
+        })
+        // изменение html раздела
+        function update_section(section_data) {
+            $(`[data-section="${section_data['id']}"]`).find('.sectionImg').css('background', 'url(' + section_data['img'] + ') center no-repeat');
+            $(`[data-section="${section_data['id']}"]`).find('.sectionHeader').html(section_data['name']);
         }
 
         // убрать секцию из пользовательского меню

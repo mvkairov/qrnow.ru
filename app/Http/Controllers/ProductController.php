@@ -103,9 +103,9 @@ class ProductController extends Controller
     }
 
     public function deleteProduct(Request $request) {
+        $product = Product::find($request->productId);
         if (!Auth::check() or Auth::id() != Menu::find(Section::find($product->sectionId)->menuId)->userId)
             abort(403);
-        $product = Product::find($request->productId);
         $parentMenu = Section::find($product->sectionId)->menuId;
         if (Auth::id() != Menu::find($parentMenu)->userId)
             abort(403);

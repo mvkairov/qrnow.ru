@@ -36,6 +36,20 @@
                 width: 100%;
             }
         }
+        
+        .menu-actions {
+            right: 5px;
+            top: 5px;
+            position: absolute; 
+            text-align: center;
+            border-color: #f36223; 
+            border-radius: 15px; 
+            background-color: #fff; 
+            min-width: 25px; 
+            padding: 0 4px; 
+            border: 2px solid #fff;
+            box-shadow: #333 2px 2px 2px;
+        }
     </style>
 
     <!-- внешние скрипты -->
@@ -581,8 +595,8 @@
                 success: function(data) {
                     let changedProduct = $(`[data-product="${productId}"]`);
                     changedProduct.find('.productUnavailable').css('display', 'none');
-                    changedProduct.find('.productAvailable').css('display', 'block');
-                    changedProduct.find('a').css('opacity', '0.5');
+                    changedProduct.find('.productAvailable').css('display', 'inline');
+                    changedProduct.find('img').css('opacity', '0.5');
                 }
             });
         });
@@ -603,8 +617,8 @@
                 success: function(data) {
                     let changedProduct = $(`[data-product="${productId}"]`);
                     changedProduct.find('.productAvailable').css('display', 'none');
-                    changedProduct.find('.productUnavailable').css('display', 'block');
-                    changedProduct.find('a').css('opacity', '1');
+                    changedProduct.find('.productUnavailable').css('display', 'inline');
+                    changedProduct.find('img').css('opacity', '1');
                 }
             });
         });
@@ -704,8 +718,8 @@
                 success: function(data) {
                     let changedSection = $(`[data-section="${sectionId}"]`);
                     changedSection.find('.sectionUnavailable').css('display', 'none');
-                    changedSection.find('.sectionAvailable').css('display', 'block');
-                    changedSection.find('.collapse').removeClass(['collapse' + sectionId, 'show']);
+                    changedSection.find('.sectionAvailable').css('display', 'inline');
+                    changedSection.find('.collapse').removeClass('show');
                     changedSection.find('.card-header').css('opacity', '0.5');
                 }
             });
@@ -727,8 +741,7 @@
                 success: function(data) {
                     let changedSection = $(`[data-section="${sectionId}"]`);
                     changedSection.find('.sectionAvailable').css('display', 'none');
-                    changedSection.find('.sectionUnavailable').css('display', 'block');
-                    changedSection.find('.collapse').addClass('collapse' + sectionId);
+                    changedSection.find('.sectionUnavailable').css('display', 'inline');
                     changedSection.find('.card-header').css('opacity', '1');
                 }
             });

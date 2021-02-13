@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/sitemap.xml
+/public/emails.json
 /~
 /storage/*.key
 /vendor

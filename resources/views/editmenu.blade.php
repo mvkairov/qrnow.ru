@@ -71,7 +71,7 @@
 </head>
 <body>
 	<!--- навбар --->
-    <header style="margin: 0 auto" class="header col-xl-5 col-md-7 col-sm-11">
+    <header style="margin: 0 auto" class="header col-xl-5 col-md-7 col-sm-11 py-1">
 		<div class="container">
 			<div class="header_inner">
                 <nav class="nav">
@@ -80,7 +80,7 @@
                     </a>
                 </nav>
                 <nav class="nav">
-                    <a class="nav_link"><img style="max-width: 5em; max-height: 5em;" src="{{ URL::to('/') }}/images/favicon.png" alt=""></a>
+                    <a class="nav_link"><img style="max-width: 4em; max-height: 4em;" src="{{ URL::to('/') }}/images/favicon.png" alt=""></a>
                 </nav>
                 <nav class="nav">
                     <a href="{{ url('/menu/' . $menu['id'] . '/orders') }}">

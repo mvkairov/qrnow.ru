@@ -65,10 +65,6 @@
 				<!-- иконка официанта -->
 				<nav class="nav">
 					<button style="background: none; border:none; padding: 1px" class="dropdown-toggle nav_link" type="button" id="garconButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<!-- <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-bell" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-						  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
-						  <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-						</svg> -->
                         <object type="image/svg+xml" data="picture.svg">
 						    <img style="width: 3em" src="{{ url('/images') }}/waiter.svg" alt="Fallback">
 						</object>
@@ -83,9 +79,6 @@
                     <!-- иконка кальянщика -->
                     <nav class="nav">
                         <button style="background: none; border: none; padding: 1px" class="dropdown-toggle nav_link" type="button" id="hookahButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <!-- <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-funnel" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
-                            </svg> -->
                             <object type="image/svg+xml" data="picture.svg">
                                 <img style="width: 3em" src="{{ url('/images') }}/hookah.svg" alt="Фолбэк">
                             </object>

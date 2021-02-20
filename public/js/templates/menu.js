@@ -36,7 +36,7 @@ function new_usermenu_product(data) {
 const userMenuSectionCard = `
 <div style="border-radius: 20px; border-color: #fff; padding: 0; margin: 20px 10px;" class="card section" data-section="{{ id }}">
     <div style="border-radius: 20px; background: url('{{ img }}') center no-repeat; 
-                height: 150px; background-attachment: fixed; background-size: cover;" 
+                height: 150px; background-size: cover;" 
          class="card-header">
         <h5 class="mb-0">
             <button style="border: medium none;

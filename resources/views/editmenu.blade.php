@@ -76,15 +76,17 @@
 			<div class="header_inner">
                 <nav class="nav">
                     <a href="{{ url('/start') }}">
-                        <button class="btn btn-carrot nav_link text-white">Главная</button>
+                        <button class="btn btn-carrot btn-sm nav_link text-white">Главная</button>
                     </a>
                 </nav>
                 <nav class="nav">
-                    <a class="nav_link"><img style="max-width: 4em; max-height: 4em;" src="{{ URL::to('/') }}/images/favicon.png" alt=""></a>
+                    <a class="nav_link">
+                        <img style="max-width: 4em; max-height: 4em;" src="{{ URL::to('/') }}/images/favicon.png" alt="">
+                    </a>
                 </nav>
                 <nav class="nav">
                     <a href="{{ url('/menu/' . $menu['id'] . '/orders') }}">
-                        <button class="btn btn-carrot nav_link text-white">Заказы</button>
+                        <button class="btn btn-carrot btn-sm nav_link text-white">Заказы</button>
                     </a>
                 </nav>
 			</div>
@@ -112,13 +114,19 @@
 
 
 	<!-- секции с блюдами -->
-	<div style="text-align: center;">
-		<button class="btn btn-carrot col-xl-5 col-md-7 col-sm-11" data-toggle="modal" data-target="#addSectionCard" id="addSectionBtn">Добавить раздел</button>
-	</div>
 	
 	<div class="accordion mb-2" id="productsList">
 	  	
 	</div>
+    
+    <div class="text-center">
+        <button type="button" class="btn btn-secondary col-xl-5 col-md-7 col-sm-11 mb-3"
+                style="padding: 5px;" data-toggle="modal" data-target="#addSectionCard" id="addSectionBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="#fff" class="bi bi-plus" viewBox="0 0 16 16" style="vertical-align: middle;">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+            Добавить раздел</button>
+    </div>
 
 
 	<!-- Модальные окна -->

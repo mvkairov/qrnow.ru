@@ -50,9 +50,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         // удалить после тестирования
-        $allowed = json_decode(file_get_contents(public_path('emails.json')));
-        if (!in_array($data['email'], $allowed))
-            $data['email'] = "NET";
+        // $allowed = json_decode(file_get_contents(public_path('emails.json')));
+        // if (!in_array($data['email'], $allowed))
+        //     $data['email'] = "NET";
         // дальше не удалять
 
         return Validator::make($data, [
